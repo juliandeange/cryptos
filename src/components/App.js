@@ -17,8 +17,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Store from '@material-ui/icons/Store'
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import Markets from './Markets'
+// import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import {/*BrowserView, MobileView,*/ isBrowser, /*isMobile*/} from "react-device-detect";
+
+
 
 const drawerWidth = 240;
 
@@ -151,7 +154,7 @@ class App extends Component {
                     <IconButton
                         color="inherit"
                         aria-label="Open drawer"
-                        onClick={isBrowser ? this.handleDrawerOpen : toggleDrawer('left', true)}
+                        onClick={isBrowser || !isBrowser ? this.handleDrawerOpen : toggleDrawer('left', true)}
                         className={classNames(classes.menuButton, open && classes.hide)}>
                         <MenuIcon />
                     </IconButton>
@@ -160,15 +163,15 @@ class App extends Component {
                     </Typography>
                 </Toolbar>
             </AppBar>
-
-            <SwipeableDrawer
+            
+            {/* <SwipeableDrawer
                 open={this.state.left}
                 onClose={toggleDrawer('left', false)}
                 onOpen={toggleDrawer('left', true)}>
                 {sideList('left')}
-            </SwipeableDrawer>
+            </SwipeableDrawer> */}
 
-            { isBrowser ?
+            {/* { isBrowser ? */}
                 <Drawer
                     className={classes.drawer}
                     variant="persistent"
@@ -184,7 +187,7 @@ class App extends Component {
                         </div>
                     {appList}
                 </Drawer>
-            : null}
+            {/* : null} */}
 
             <main
             className={classNames(classes.content, {
@@ -195,7 +198,7 @@ class App extends Component {
             {(() => {
                 switch(this.state.displayContainer) {
                     case "Markets":
-                        return <div>Markets</div>
+                        return <Markets />
                     default:
                         return;
                 }
