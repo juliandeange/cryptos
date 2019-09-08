@@ -21,8 +21,6 @@ import Markets from './Markets'
 // import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import {/*BrowserView, MobileView,*/ isBrowser, /*isMobile*/} from "react-device-detect";
 
-
-
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -110,7 +108,7 @@ class App extends Component {
     
     render() {
         const { classes, theme } = this.props;
-        const { open  } = this.state;
+        const { open } = this.state;
 
         const toggleDrawer = (side, open) => event => {
             if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
