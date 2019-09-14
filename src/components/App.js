@@ -29,7 +29,7 @@ const styles = theme => ({
         height: "10%",
         // backgroundColor:'#2F2F2F',
         backgroundColor: "white",
-        // opacity: 0.2
+        opacity: 0.3
     },
 });
 
@@ -64,7 +64,7 @@ class App extends Component {
             
         <div className={classes.root}>
             
-            <Grid container spacing={3}>
+            <Grid container>
                 <Grid item xs={12} className={classes.appBar}>
                     {/* <IconButton>
                         <Store />
