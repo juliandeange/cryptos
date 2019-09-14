@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 // import ListItemIcon from '@material-ui/core/ListItemIcon';
 // import ListItemText from '@material-ui/core/ListItemText';
 import { Timeline, Home } from '@material-ui/icons';
-// import Markets from './Markets'
+import Prices from './Prices'
 // import {/*BrowserView, MobileView,*/ isBrowser, /*isMobile*/} from "react-device-detect";
 // import Background from '../images/background.jpg'
 import Grid from '@material-ui/core/Grid';
@@ -36,9 +36,7 @@ const styles = theme => ({
 class App extends Component {
 
     state = {
-        open: false,
         displayContainer: "",
-        left: false,
     };
     
     handleDrawerOpen = () => {
@@ -58,7 +56,7 @@ class App extends Component {
     
     render() {
         const { classes, /*theme*/ } = this.props;
-        // const { /*open*/ } = this.state;
+        const {  } = this.state;
 
         return (
             
@@ -66,16 +64,30 @@ class App extends Component {
             
             <Grid container>
                 <Grid item xs={12} className={classes.appBar}>
-                    <IconButton style={{marginLeft: 15}}>
+                    <IconButton onClick={this.labelClicked.bind(this, "Home")} style={{marginLeft: 15, }} iconStyle={{iconHoverColor: 'red'}}>
                         <Home style={{color: "white"}}/>
                         <p style={{fontSize: 15, color: "white", marginLeft: 12}}>Home</p>
                     </IconButton>
-                    <IconButton>
+                    <IconButton onClick={this.labelClicked.bind(this, "Prices")}>
                         <Timeline style={{color: "white"}}/> 
                         <p style={{fontSize: 15, color: "white", marginLeft: 12}}>Prices</p>
                     </IconButton>
                 </Grid>
+                <Grid item xs={12} style={{height: '90%'}}>
+                    {(() => {
+                        switch(this.state.displayContainer) {
+                        case "Home":
+                            return <div>Home</div>
+                        case "Prices":
+                            return <div><Prices /></div>
+                        default:
+                            return;
+                        }
+                    })()}  
+                </Grid>
             </Grid>
+
+            
 
 
         </div>
