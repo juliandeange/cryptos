@@ -5,11 +5,11 @@ import { withStyles } from '@material-ui/core/styles';
 // import List from '@material-ui/core/List';
 // import Typography from '@material-ui/core/Typography';
 // import Divider from '@material-ui/core/Divider';
-// import IconButton from '@material-ui/core/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 // import ListItem from '@material-ui/core/ListItem';
 // import ListItemIcon from '@material-ui/core/ListItemIcon';
 // import ListItemText from '@material-ui/core/ListItemText';
-// import { Store, Home } from '@material-ui/icons';
+import { Timeline, Home } from '@material-ui/icons';
 // import Markets from './Markets'
 // import {/*BrowserView, MobileView,*/ isBrowser, /*isMobile*/} from "react-device-detect";
 // import Background from '../images/background.jpg'
@@ -27,9 +27,9 @@ const styles = theme => ({
     },
     appBar: {
         height: "10%",
-        // backgroundColor:'#2F2F2F',
-        backgroundColor: "white",
-        opacity: 0.3
+        backgroundColor:'transparent',
+        // backgroundColor: "white",
+        // opacity: 0.3
     },
 });
 
@@ -66,12 +66,14 @@ class App extends Component {
             
             <Grid container>
                 <Grid item xs={12} className={classes.appBar}>
-                    {/* <IconButton>
-                        <Store />
+                    <IconButton style={{marginLeft: 15}}>
+                        <Home style={{color: "white"}}/>
+                        <p style={{fontSize: 15, color: "white", marginLeft: 12}}>Home</p>
                     </IconButton>
                     <IconButton>
-                        <Home />
-                    </IconButton> */}
+                        <Timeline style={{color: "white"}}/> 
+                        <p style={{fontSize: 15, color: "white", marginLeft: 12}}>Prices</p>
+                    </IconButton>
                 </Grid>
             </Grid>
 
