@@ -13,15 +13,26 @@ import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
     root: {
-        display: "flex",
+        // display: "flex",
+        backgroundColor: "transparent",
+        maxHeight: 100
     },
     tableRow: {
-        backgroundColor: "#2F2F2F"
+        // backgroundColor: "transparent"
+        color: "white"
     },
     tableTitle: {
         color: "white",
         marginTop: 1,
-        marginBottom: 1
+        marginBottom: 1,
+        fontSize: 16
+    },
+    table: {
+        // marginTop: "20px",
+        // marginBottom: "20px",
+        // marginLeft: "20px",
+        // marginRight: "20px",
+        maxHeight: 100
     }
 });
 
@@ -33,10 +44,26 @@ class Markets extends Component {
 
     componentDidMount(){
         this.setState({
-            rows: [{
-                currency: "1",
-                price: "2"
-            }]
+            rows: [
+                {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
+                // {currency: "1",price: "2"},
+                // {currency: "1",price: "2"},
+                // {currency: "1",price: "2"},
+                // {currency: "1",price: "2"},
+                // {currency: "1",price: "2"},
+                // {currency: "1",price: "2"},
+                // {currency: "1",price: "2"},
+                // {currency: "1",price: "2"},
+                // {currency: "1",price: "2"},
+                // {currency: "1",price: "2"},
+            ]
         })
     }
 
@@ -50,22 +77,22 @@ class Markets extends Component {
                 <Paper className={classes.root}>
                     <Table className={classes.table}>
                         <TableHead>
-                        <TableRow className={classes.tableRow}>
-                            <TableCell>
-                                <p className={classes.tableTitle}>Currency</p>
-                            </TableCell>
-                            <TableCell align="left">
-                                <p className={classes.tableTitle}>Price</p>
-                            </TableCell>
-                        </TableRow>
+                            <TableRow className={classes.tableRow}>
+                                <TableCell>
+                                    <p className={classes.tableTitle}><b>Currency</b></p>
+                                </TableCell>
+                                <TableCell align="left">
+                                    <p className={classes.tableTitle}><b>Price</b></p>
+                                </TableCell>
+                            </TableRow>
                         </TableHead>
                         <TableBody>
                             {this.state.rows ? this.state.rows.map(row => (
                                 <TableRow key={row.currency}>
-                                <TableCell component="th" scope="row">
-                                    {row.currency}
-                                </TableCell>
-                                <TableCell align="left">{row.price}</TableCell>
+                                    <TableCell className={classes.tableRow} component="th" scope="row">
+                                        {row.currency}
+                                    </TableCell>
+                                    <TableCell className={classes.tableRow} align="left">{row.price}</TableCell>
                                 </TableRow>
                             )) : null}
                         </TableBody>
