@@ -56,7 +56,7 @@ class App extends Component {
     
     render() {
         const { classes, /*theme*/ } = this.props;
-        const {  } = this.state;
+        // const {  } = this.state;
 
         return (
             
@@ -73,23 +73,19 @@ class App extends Component {
                         <p style={{fontSize: 15, color: "white", marginLeft: 12}}>Prices</p>
                     </IconButton>
                 </Grid>
-                <Grid item xs={12} style={{height: '90%'}}>
+                <Grid item xs={12} style={{height: '90vh'}} >
                     {(() => {
                         switch(this.state.displayContainer) {
                         case "Home":
                             return <div>Home</div>
                         case "Prices":
-                            return <div><Prices /></div>
+                            return <Prices />
                         default:
                             return;
                         }
-                    })()}  
+                    })()}
                 </Grid>
             </Grid>
-
-            
-
-
         </div>
 
         );

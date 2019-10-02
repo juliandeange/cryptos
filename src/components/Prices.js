@@ -13,13 +13,17 @@ import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
     root: {
-        // display: "flex",
+        display: "flex",
         backgroundColor: "transparent",
-        maxHeight: 100
     },
     tableRow: {
         // backgroundColor: "transparent"
         color: "white"
+    },
+    tableContainer: {
+        maxHeight: "80vh", 
+        overflow: "scroll",
+        margin: 25
     },
     tableTitle: {
         color: "white",
@@ -28,15 +32,13 @@ const styles = theme => ({
         fontSize: 16
     },
     table: {
-        // marginTop: "20px",
-        // marginBottom: "20px",
-        // marginLeft: "20px",
-        // marginRight: "20px",
-        maxHeight: 100
+        marginLeft: "25px",
+        width: "96%",
+        maxHeight: "10px"
     }
 });
 
-class Markets extends Component {
+class Prices extends Component {
 
     state = {
         rows: false
@@ -53,29 +55,29 @@ class Markets extends Component {
                 {currency: "1",price: "2"},
                 {currency: "1",price: "2"},
                 {currency: "1",price: "2"},
-                // {currency: "1",price: "2"},
-                // {currency: "1",price: "2"},
-                // {currency: "1",price: "2"},
-                // {currency: "1",price: "2"},
-                // {currency: "1",price: "2"},
-                // {currency: "1",price: "2"},
-                // {currency: "1",price: "2"},
-                // {currency: "1",price: "2"},
-                // {currency: "1",price: "2"},
-                // {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
+                {currency: "1",price: "2"},
             ]
         })
     }
 
     render() {
 
-        const { classes, theme } = this.props;
+        const { classes, /*theme*/ } = this.props;
         // const { rows } = this.state;
 
         return (
-            <div>
+            <div className={classes.tableContainer}>
                 <Paper className={classes.root}>
-                    <Table className={classes.table}>
+                    <Table>
                         <TableHead>
                             <TableRow className={classes.tableRow}>
                                 <TableCell>
@@ -104,4 +106,4 @@ class Markets extends Component {
 
 }
 
-export default withStyles(styles, { withTheme: true })(Markets);
+export default withStyles(styles, { withTheme: true })(Prices);
