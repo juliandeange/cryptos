@@ -81,7 +81,7 @@ class Prices extends Component {
                         <TableHead>
                             <TableRow className={classes.tableRow}>
                                 <TableCell>
-                                    <p className={classes.tableTitle}><b>Currency</b></p>
+                                    <p className={classes.tableTitle} /*style={{width: "35vh"}}*/ ><b>Currency</b></p>
                                 </TableCell>
                                 <TableCell align="left">
                                     <p className={classes.tableTitle}><b>Price</b></p>
@@ -91,7 +91,7 @@ class Prices extends Component {
                         <TableBody>
                             {this.state.rows ? this.state.rows.map(row => (
                                 <TableRow key={row.currency}>
-                                    <TableCell className={classes.tableRow} component="th" scope="row">
+                                    <TableCell className={classes.tableRow} /*style={{width: "35vh"}}*/ component="th" scope="row">
                                         {row.currency}
                                     </TableCell>
                                     <TableCell className={classes.tableRow} align="left">{row.price}</TableCell>
