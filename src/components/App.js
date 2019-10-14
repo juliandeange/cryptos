@@ -95,12 +95,7 @@ class App extends Component {
                         <Select
                             value={this.state.currency}
                             onChange={this.handleChange}
-                            style={{backgroundColor: "transparent"}}
-                            inputProps={{
-                                name: 'age',
-                                id: 'filled-age-simple',
-                            }}
-                            >
+                            style={{backgroundColor: "transparent"}}>
                             <MenuItem value={10}>
                                 <img src={CA} alt={"CA"} /> 
                             </MenuItem>
