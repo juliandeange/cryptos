@@ -20,6 +20,7 @@ import Select from '@material-ui/core/Select';
 import CA from 'react-flags/vendor/flags/flags-iso/flat/24/CA.png'
 import US from 'react-flags/vendor/flags/flags-iso/flat/24/US.png'
 import GB from 'react-flags/vendor/flags/flags-iso/flat/24/GB.png'
+import EU from 'react-flags/vendor/flags/flags-iso/flat/24/EU.png'
 
 const styles = theme => ({
     root: {
@@ -82,7 +83,7 @@ class App extends Component {
             <div className={classes.root}>
                 <Grid container>
                     <Grid item xs={isBrowser ? 11 : 10} className={classes.appBar}>
-                        <IconButton onClick={this.labelClicked.bind(this, "Home")} style={{paddingLeft: 15, marginTop: -14}} iconStyle={{iconHoverColor: 'red'}}>
+                        <IconButton onClick={this.labelClicked.bind(this, "Home")} style={{paddingLeft: 30, marginTop: -14}} iconStyle={{iconHoverColor: 'red'}}>
                             <Home style={{color: "white"}}/>
                             <p className={classes.appBarLabel}>Home</p>
                         </IconButton>
@@ -104,6 +105,9 @@ class App extends Component {
                             </MenuItem>
                             <MenuItem value={30}>
                                 <img src={GB} alt={"GB"} />
+                            </MenuItem>
+                            <MenuItem value={40}>
+                                <img src={EU} alt={"EU"} />
                             </MenuItem>
                         </Select>
                     </Grid>
