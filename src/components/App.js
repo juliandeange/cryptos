@@ -1,22 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-// import List from '@material-ui/core/List';
-// import Typography from '@material-ui/core/Typography';
-// import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-// import ListItem from '@material-ui/core/ListItem';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
-// import ListItemText from '@material-ui/core/ListItemText';
 import { Timeline, Home } from '@material-ui/icons';
 import Prices from './Prices'
-import {/*BrowserView, MobileView,*/ isBrowser, /*isMobile*/} from "react-device-detect";
-// import Background from '../images/background.jpg'
+import {/*BrowserView, MobileView, isMovile*/ isBrowser} from "react-device-detect";
 import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-// import Flag from "react-flags";
 import CA from 'react-flags/vendor/flags/flags-iso/flat/24/CA.png'
 import US from 'react-flags/vendor/flags/flags-iso/flat/24/US.png'
 import GB from 'react-flags/vendor/flags/flags-iso/flat/24/GB.png'
@@ -50,7 +41,7 @@ class App extends Component {
 
     state = {
         displayContainer: "",
-        currency: 10
+        currency: "CAD"
     };
     
     handleDrawerOpen = () => {
@@ -70,14 +61,13 @@ class App extends Component {
     
     handleChange = event => {
         this.setState({ currency: event.target.value});
+        // console.log(process.env.REACT_APP_API_KEY)
       };
 
     
     render() {
         const { classes, /*theme*/ } = this.props;
         // const {  } = this.state;
-
-        
 
         return (
             <div className={classes.root}>
@@ -97,16 +87,16 @@ class App extends Component {
                             value={this.state.currency}
                             onChange={this.handleChange}
                             style={{backgroundColor: "transparent"}}>
-                            <MenuItem value={10}>
+                            <MenuItem value={"CAD"}>
                                 <img src={CA} alt={"CA"} /> 
                             </MenuItem>
-                            <MenuItem value={20}>
+                            <MenuItem value={"USD"}>
                                 <img src={US} alt={"US"} /> 
                             </MenuItem>
-                            <MenuItem value={30}>
+                            <MenuItem value={"GBP"}>
                                 <img src={GB} alt={"GB"} />
                             </MenuItem>
-                            <MenuItem value={40}>
+                            <MenuItem value={"EUR"}>
                                 <img src={EU} alt={"EU"} />
                             </MenuItem>
                         </Select>
