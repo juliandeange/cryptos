@@ -39,10 +39,16 @@ const styles = theme => ({
 
 class App extends Component {
 
-    state = {
-        displayContainer: "",
-        currency: "CAD"
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            displayContainer: "",
+            currency: "CAD",
+            error: null,
+            isLoaded: false,
+            items: []
+        }
+    }
     
     handleDrawerOpen = () => {
         this.setState({ open: true });
@@ -62,9 +68,24 @@ class App extends Component {
     handleChange = event => {
         this.setState({ currency: event.target.value});
         // console.log(process.env.REACT_APP_API_KEY)
-      };
+    };
 
-    
+    componentDidUpdate(props, state) {
+
+        if (state.items.rates === undefined) {
+            var fetchString = "https://rest.coinapi.io/v1/exchangerate/CAD?apikey=" + process.env.REACT_APP_API_KEY
+            fetch(fetchString)
+                .then(response => response.json())
+                .then(items => this.setState({ items }))
+        }
+
+    }
+
+    componentDidMount(props) {
+
+        
+    }
+
     render() {
         const { classes, /*theme*/ } = this.props;
         // const {  } = this.state;
