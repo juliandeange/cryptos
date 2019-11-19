@@ -40,39 +40,54 @@ const styles = theme => ({
 
 class Prices extends Component {
 
-    state = {
-        rows: false
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            rows: false,
+            items: []
+        }
+    }
 
-    componentDidMount(){
-        this.setState({
-            rows: [
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-                {currency: "1",price: "2"},
-            ]
-        })
+    componentDidMount(props, state){
+
+            var fetchString = "https://rest.coinapi.io/v1/exchangerate/CAD?apikey=" + process.env.REACT_APP_API_KEY
+            fetch(fetchString)
+                .then(response => response.json())
+                .then(items => this.setState({ items }))
+
+        // this.setState({
+        //     rows: [
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //         {currency: "1",price: "2"},
+        //     ]
+        // })
+    }
+
+    componentDidUpdate(props, state) {
+
     }
 
     render() {
 
         const { classes, /*theme*/ } = this.props;
-        // const { rows } = this.state;
+
+        var temp = this.state
 
         return (
             <div className={classes.tableContainer}>
@@ -89,12 +104,12 @@ class Prices extends Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {this.state.rows ? this.state.rows.map(row => (
+                            {this.state.items.rates ? this.state.items.rates.map(row => (
                                 <TableRow key={row.currency}>
                                     <TableCell className={classes.tableRow} /*style={{width: "35vh"}}*/ component="th" scope="row">
-                                        {row.currency}
+                                        {row.asset_id_quote}
                                     </TableCell>
-                                    <TableCell className={classes.tableRow} align="left">{row.price}</TableCell>
+                                    <TableCell className={classes.tableRow} align="left">{row.rate}</TableCell>
                                 </TableRow>
                             )) : null}
                         </TableBody>

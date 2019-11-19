@@ -72,12 +72,12 @@ class App extends Component {
 
     componentDidUpdate(props, state) {
 
-        if (state.items.rates === undefined) {
-            var fetchString = "https://rest.coinapi.io/v1/exchangerate/CAD?apikey=" + process.env.REACT_APP_API_KEY
-            fetch(fetchString)
-                .then(response => response.json())
-                .then(items => this.setState({ items }))
-        }
+        // if (state.items.rates === undefined) {
+        //     var fetchString = "https://rest.coinapi.io/v1/exchangerate/CAD?apikey=" + process.env.REACT_APP_API_KEY
+        //     fetch(fetchString)
+        //         .then(response => response.json())
+        //         .then(items => this.setState({ items }))
+        // }
 
     }
 
