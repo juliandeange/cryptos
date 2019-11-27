@@ -38,6 +38,8 @@ const styles = theme => ({
     }
 });
 
+var coins = ["LTC"]
+
 class Prices extends Component {
 
     constructor(props) {
@@ -50,10 +52,10 @@ class Prices extends Component {
 
     componentDidMount(props, state){
 
-            var fetchString = "https://rest.coinapi.io/v1/exchangerate/CAD?apikey=" + process.env.REACT_APP_API_KEY
+        var fetchString = "https://rest.coinapi.io/v1/exchangerate/CAD?apikey=" + process.env.REACT_APP_API_KEY
             fetch(fetchString)
-                .then(response => response.json())
-                .then(items => this.setState({ items }))
+            .then(response => response.json())
+            .then(items => this.setState({ items }))
 
         // this.setState({
         //     rows: [
@@ -104,14 +106,23 @@ class Prices extends Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {this.state.items.rates ? this.state.items.rates.map(row => (
-                                <TableRow key={row.currency}>
-                                    <TableCell className={classes.tableRow} /*style={{width: "35vh"}}*/ component="th" scope="row">
-                                        {row.asset_id_quote}
-                                    </TableCell>
-                                    <TableCell className={classes.tableRow} align="left">{row.rate}</TableCell>
-                                </TableRow>
-                            )) : null}
+                           
+
+                            {this.state.items.rates ? 
+                                this.state.items.rates.map(row => {
+                                    return coins.includes(row.asset_id_quote) ?
+                                        <TableRow key={row.currency}>
+                                            <TableCell className={classes.tableRow} /*style={{width: "35vh"}}*/ component="th" scope="row">
+                                                {row.asset_id_quote}
+                                            </TableCell>
+                                            <TableCell className={classes.tableRow} align="left">{1 / row.rate}</TableCell>
+                                        </TableRow>
+                                    : null
+                                })  
+                            : null }
+                               
+
+
                         </TableBody>
                     </Table>
                 </Paper>
