@@ -114,6 +114,8 @@ class Prices extends Component {
 
         const { classes, currency } = this.props;
 
+        console.log(symbolMap.BTC)
+
         return (
             <div className={classes.tableContainer}>
                 <Paper className={classes.root}>
@@ -121,7 +123,10 @@ class Prices extends Component {
                         <TableHead>
                             <TableRow className={classes.tableRow}>
                                 <TableCell>
-                                    <p className={classes.tableTitle} /*style={{width: "35vh"}}*/ ><b>Currency</b></p>
+                                    <p className={classes.tableTitle} style={{width: "35vh"}} ><b>Currency</b></p>
+                                </TableCell>
+                                <TableCell>
+                                    <p className={classes.tableTitle}><b>Code</b></p>
                                 </TableCell>
                                 <TableCell align="left">
                                     <p className={classes.tableTitle}><b>Price</b></p>
@@ -132,8 +137,12 @@ class Prices extends Component {
                             {this.state.items ? 
                                 Object.keys(this.state.items).map((key, value) => 
                                     <TableRow key={key}>
+                                        <TableCell className={classes.tableRow} style={{width: "35vh"}} component="th" scope="row">
+                                            {symbolMap[key]}
+                                            
+                                        </TableCell>
                                         <TableCell className={classes.tableRow} component="th" scope="row">
-                                           {key}
+                                            {key}
                                         </TableCell>
                                         <TableCell className={classes.tableRow} component="th" scope="row">
                                             {(1 / this.state.items[key]).toFixed(2)}
