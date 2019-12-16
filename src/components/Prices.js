@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-// import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 // import Typography from '@material-ui/core/Typography';
 
@@ -38,7 +36,44 @@ const styles = theme => ({
     }
 });
 
-var coins = ["LTC"]
+var coins = ["BTC", "ETH", "XRP", "USDT", "BCH", 
+             "LTC", "EOS", "BNB", "BSV", "XLM",
+             "TRX", "ADA", "LEO", "XMR", "LINK",
+             "XTZ", "NEO", "HT", "MIOTA", "ATOM",
+             "MKR", "DASH", "ETC", "USDC", "ONT"]
+
+var symbolMap = {
+ 
+    BTC: "Bitcoin",
+    ETH: "Etherium",
+    XRP: "XRP",
+    USDT: "Tether",
+    BCH: "Bitcoin Cash", 
+    LTC: "Litecoin",
+    EOS: "EOS",
+    BNB: "Binance Coin",
+    BSV: "Bitcoin SV",
+    XTZ: "Tezos",
+    XLM: "Stellar",
+    ADA: "Cardano",
+    TRX: "TRON",
+    XMR: "Monero",
+    LEO: "UNUS SED LEO",
+    ATOM: "Cosmos",
+    LINK: "Chainlink",
+    HT: "Huobi Token",
+    NEO: "NEO",
+    MIOTA: "IOTA",
+    MKR: "Maker",
+    DASH: "Dash",
+    ETC: "Ethereum Classic",
+    USDC: "USD Coin",
+    ONT: "Ontology"
+
+}
+
+const baseURL = "https://min-api.cryptocompare.com/data/price"
+const coinsList = coins.join(",")
 
 class Prices extends Component {
 
@@ -46,50 +81,38 @@ class Prices extends Component {
         super(props);
         this.state = {
             rows: false,
-            items: []
+            items: [],
+            currency: ""
         }
     }
 
-    componentDidMount(props, state){
+    componentDidMount(props, state) {
 
-        var fetchString = "https://rest.coinapi.io/v1/exchangerate/CAD?apikey=" + process.env.REACT_APP_API_KEY
-            fetch(fetchString)
-            .then(response => response.json())
-            .then(items => this.setState({ items }))
+        // eslint-disable-next-line
+        var fetchString = baseURL + "?fsym=" + "CAD" + "&api_key=" + process.env.REACT_APP_API_KEY + "&tsyms=" + coinsList
 
-        // this.setState({
-        //     rows: [
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //         {currency: "1",price: "2"},
-        //     ]
-        // })
+        fetch(fetchString)
+        .then(response => response.json())
+        .then(items => this.setState({ items }))
+
     }
 
     componentDidUpdate(props, state) {
 
+        if (props.currency !== this.state.currency) {
+
+            var fetchString = baseURL + "?fsym=" + props.currency + "&api_key=" + process.env.REACT_APP_API_KEY + "&tsyms=" + coinsList
+
+            fetch(fetchString)
+            .then(response => response.json())
+            .then(items => this.setState({ items }))
+
+        }
     }
 
     render() {
 
-        const { classes, /*theme*/ } = this.props;
-
-        var temp = this.state
+        const { classes, currency } = this.props;
 
         return (
             <div className={classes.tableContainer}>
@@ -106,30 +129,24 @@ class Prices extends Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                           
-
-                            {this.state.items.rates ? 
-                                this.state.items.rates.map(row => {
-                                    return coins.includes(row.asset_id_quote) ?
-                                        <TableRow key={row.currency}>
-                                            <TableCell className={classes.tableRow} /*style={{width: "35vh"}}*/ component="th" scope="row">
-                                                {row.asset_id_quote}
-                                            </TableCell>
-                                            <TableCell className={classes.tableRow} align="left">{1 / row.rate}</TableCell>
-                                        </TableRow>
-                                    : null
-                                })  
+                            {this.state.items ? 
+                                Object.keys(this.state.items).map((key, value) => 
+                                    <TableRow key={key}>
+                                        <TableCell className={classes.tableRow} component="th" scope="row">
+                                           {key}
+                                        </TableCell>
+                                        <TableCell className={classes.tableRow} component="th" scope="row">
+                                            {(1 / this.state.items[key]).toFixed(2)}
+                                        </TableCell>
+                                    </TableRow>
+                                )
                             : null }
-                               
-
-
                         </TableBody>
                     </Table>
                 </Paper>
             </div>
         )
     }
-
 }
 
 export default withStyles(styles, { withTheme: true })(Prices);
