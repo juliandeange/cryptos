@@ -112,7 +112,7 @@ class Prices extends Component {
 
     render() {
 
-        const { classes, currency } = this.props;
+        const { classes, /*currency*/ } = this.props;
 
         console.log(symbolMap.BTC)
 
@@ -123,7 +123,7 @@ class Prices extends Component {
                         <TableHead>
                             <TableRow className={classes.tableRow}>
                                 <TableCell>
-                                    <p className={classes.tableTitle} style={{width: "35vh"}} ><b>Currency</b></p>
+                                    <p className={classes.tableTitle} /*style={{width: "35vh"}}*/ ><b>Currency</b></p>
                                 </TableCell>
                                 <TableCell>
                                     <p className={classes.tableTitle}><b>Code</b></p>
@@ -137,9 +137,8 @@ class Prices extends Component {
                             {this.state.items ? 
                                 Object.keys(this.state.items).map((key, value) => 
                                     <TableRow key={key}>
-                                        <TableCell className={classes.tableRow} style={{width: "35vh"}} component="th" scope="row">
+                                        <TableCell className={classes.tableRow} /*style={{width: "35vh"}}*/ component="th" scope="row">
                                             {symbolMap[key]}
-                                            
                                         </TableCell>
                                         <TableCell className={classes.tableRow} component="th" scope="row">
                                             {key}
