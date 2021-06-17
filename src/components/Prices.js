@@ -115,8 +115,6 @@ class Prices extends Component {
 
         const { classes, /*currency*/ } = this.props;
 
-        console.log(symbolMap.BTC)
-
         return (
             <div className={classes.tableContainer}>
                 <Paper className={classes.root}>
