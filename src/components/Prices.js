@@ -36,9 +36,9 @@ const styles = theme => ({
     }
 });
 
-var coins = ["BTC", "ETH", "XRP", "USDT", "BCH", 
-             "LTC", "EOS", "BNB", "BSV", "XLM",
-             "TRX", "ADA", "LEO", "XMR", "LINK",
+var coins = ["BTC", "ETH", "XRP", "USDT", "BCH", "DOGE",
+             "LTC", "ADA", "EOS", "BNB", "BSV", "XLM",
+             "TRX", "LEO", "XMR", "LINK",
              "XTZ", "NEO", "HT", "MIOTA", "ATOM",
              "MKR", "DASH", "ETC", "USDC", "ONT"]
 
@@ -49,13 +49,14 @@ var symbolMap = {
     XRP: "XRP",
     USDT: "Tether",
     BCH: "Bitcoin Cash", 
+    DOGE: "Dogecoin",
     LTC: "Litecoin",
+    ADA: "Cardano",
     EOS: "EOS",
     BNB: "Binance Coin",
     BSV: "Bitcoin SV",
     XTZ: "Tezos",
     XLM: "Stellar",
-    ADA: "Cardano",
     TRX: "TRON",
     XMR: "Monero",
     LEO: "UNUS SED LEO",
